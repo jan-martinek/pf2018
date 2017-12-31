@@ -66,7 +66,7 @@ function loadStateFromUrl() {
 
 function saveState() {
   var state = serializeBoard();
-  history.replaceState('saved', '', state ? 'pf2018/?s=' + state : '/');
+  history.replaceState('saved', '', state ? '/pf2018/?s=' + state : '/');
 }
 
 function drawBoard() {
