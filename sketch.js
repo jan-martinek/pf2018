@@ -1,39 +1,20 @@
 var step = 0;
 var w = window.innerWidth;
 var h = window.innerHeight;
-var sounds = {};
-var rowSounds, rows, cols = 24, board;
+var sounds, rowSounds, rows, cols = 24, board;
 var framesInStep = 5;
 var debug = false;
+var soundNames = ['dong', 'nedavej', 'uu', 'uuh', 'uklik-tink', 'klink', 
+  'unankancvink', 'vzumvz', 'klink2', 'stastny-novy-rok', 'stastny-novy-rok-h', 
+  'echu', 'hhhhhhkrukp', 'hmmmmm', 'echu2', 'hodne-stesti', 'hodne-zdravi', 
+  'a-takove-ty-veci', 'pfko', 'do-noveho-roku', 'do-noveho-roku-h', '2008', 
+  '2018', 'kshhhshhhshhh', 'chaiiii'];
 
 function preload() {
-  sounds.dong = loadSound('sounds/dong.mp3');
-
-  sounds['nedavej'] = loadSound('sounds/nedavej.mp3');
-  sounds['uu'] = loadSound('sounds/uu.mp3');
-  sounds['uuh'] = loadSound('sounds/uuh.mp3');
-  sounds['uklik-tink'] = loadSound('sounds/uklik-tink.mp3');
-  sounds['klink'] = loadSound('sounds/klink.mp3');
-  sounds['unankancvink'] = loadSound('sounds/unankancvink.mp3');
-  sounds['vzumvz'] = loadSound('sounds/vzumvz.mp3');
-  sounds['klink2'] = loadSound('sounds/klink2.mp3');
-  sounds['stastny-novy-rok'] = loadSound('sounds/stastny-novy-rok.mp3');
-  sounds['stastny-novy-rok-h'] = loadSound('sounds/stastny-novy-rok-h.mp3');
-  sounds['echu'] = loadSound('sounds/echu.mp3');
-  sounds['hhhhhhkrukp'] = loadSound('sounds/hhhhhhkrukp.mp3');
-  sounds['hmmmmm'] = loadSound('sounds/hmmmmm.mp3');
-  sounds['echu2'] = loadSound('sounds/echu2.mp3');
-  sounds['hodne-stesti'] = loadSound('sounds/hodne-stesti.mp3');
-  sounds['hodne-zdravi'] = loadSound('sounds/hodne-zdravi.mp3');
-  sounds['a-takove-ty-veci'] = loadSound('sounds/a-takove-ty-veci.mp3');
-  sounds['pfko'] = loadSound('sounds/pfko.mp3');
-  sounds['do-noveho-roku'] = loadSound('sounds/do-noveho-roku.mp3');
-  sounds['do-noveho-roku-h'] = loadSound('sounds/do-noveho-roku-h.mp3');
-  sounds['2008'] = loadSound('sounds/2008.mp3');
-  sounds['2018'] = loadSound('sounds/2018.mp3');
-  sounds['kshhhshhhshhh'] = loadSound('sounds/kshhhshhhshhh.mp3');
-  sounds['chaiiii'] = loadSound('sounds/chaiiii.mp3');
-
+  sounds = soundNames.reduce(function(acc, name) {
+    acc[name] = loadSound('sounds/' + name + '.mp3');
+    return acc;
+  }, {});
 }
 
 function setup() {
