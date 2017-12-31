@@ -118,21 +118,21 @@ function serializeBoard() {
     var active = board[key].reduce(function(acc, val, id) {
       if (val) acc.push(id);
       return acc;
-    }, []).join(',');
+    }, []).join('_');
     if (active) {
-      return index + ':' + active;
+      return index + '__' + active;
     }
-  }).filter(function(val) { return val; }).join(';');
+  }).filter(function(val) { return val; }).join('-');
 }
 
 function deserializeBoard(data) {
   board = generateBoard();
   var boardKeys = Object.keys(board);
   if (data) {
-    data.split(';').forEach(function(key) {
+    data.split('-').forEach(function(key) {
       if (!key.match(/:$/)) {
-        var soundKey = key.split(':')[0]; 
-        key.split(':')[1].split(',').forEach(function(col) {
+        var soundKey = key.split('__')[0]; 
+        key.split('__')[1].split('_').forEach(function(col) {
           board[boardKeys[soundKey]][col] = true;
         });  
       }
